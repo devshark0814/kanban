@@ -20,3 +20,6 @@
 # Fast-APIの起動
 * コンテナに入って
 <pre>uvicorn server:app --host 0.0.0.0 --port 3000 --reload</pre>
+
+# Fast-APIのDod
+<pre>http://localhost:3000/docs</pre>
