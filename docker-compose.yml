@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  front:
+    container_name: front
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+    ports:
+      - 8080:8080
+    restart: always
+    tty: true
+    volumes:
+      - ./vue-app:/app
+    
+  back:
+    container_name: back
+    build:
+      context: .
+      dockerfile: ./docker/back/Dockerfile
+    ports:
+      - 3000:3000
+    restart: always
+    tty: true
+    volumes:
+      - ./fast-app:/app
