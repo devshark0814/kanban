@@ -24,3 +24,15 @@ services:
     tty: true
     volumes:
       - ./fast-app:/app
+
+  db:
+    image: mariadb:10.7
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=kanban_db
