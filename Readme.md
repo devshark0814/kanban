@@ -23,3 +23,7 @@
 
 # Fast-APIのDod
 <pre>http://localhost:3000/docs</pre>
+
+# テーブルをスクリプトで作成
+* コンテナにはいる
+* <pre>python user.py</pre>

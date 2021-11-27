@@ -3,8 +3,7 @@ from fastapi import FastAPI
 from typing import List  # ネストされたBodyを定義するために必要
 from starlette.middleware.cors import CORSMiddleware
 
-from database import session  # DBと接続するためのセッション
-from models.test import TestTable  # 今回使うモデルをインポート
+from apis import testApi, sampleApi, userApi
 
 app = FastAPI()
 
@@ -16,11 +15,7 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-@app.get("/api/hello")
-def index():
-    return {"message": "Hello World"}
+app.include_router(testApi.router, prefix="/api/test", tags=["test"])
+app.include_router(sampleApi.router, prefix="/api/sample", tags=["sample"])
 
-@app.get("/api/test/get")
-def getTest():
-    users = session.query(TestTable).all();
-    return users;
+app.include_router(userApi.router, prefix="/api/user", tags=["user"])

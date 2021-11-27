@@ -1,5 +1,11 @@
-# from server import app
+from fastapi import APIRouter
 
-# @app.get("/api/test/getAll")
-# def getAll():
-#     return {"message": "test->getAll()"}
+from database import session  # DBと接続するためのセッション
+from models.test import TestTable  # 今回使うモデルをインポート
+
+router = APIRouter()
+
+@router.get("/get")
+def getTest():
+    users = session.query(TestTable).all();
+    return users;
