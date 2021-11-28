@@ -24,6 +24,7 @@ def create(user: UserCreate):
         first_name = user.first_name,
         last_name  = user.last_name,
         email      = user.email,
+        password   = user.password,
         img_url    = user.img_url,
     )
     session.add(userObj)

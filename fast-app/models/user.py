@@ -16,6 +16,7 @@ class UserTable(Base):
     first_name  = Column(String(255))
     last_name   = Column(String(255))
     email       = Column(String(255))
+    password    = Column(String(255))
     img_url     = Column(Text(100))
     created_pg  = Column(String(255))
     created_at  = Column(DateTime, default=datetime.now)

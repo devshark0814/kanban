@@ -7,30 +7,14 @@ import axios from "axios"; //追記
 import VueAxios from "vue-axios"; //追記
 import vuetify from "@/plugins/vuetify"; // path to vuetify export
 import Toasted from 'vue-toasted';
+import apiClient from "./common/apiClient";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios); //追記
 Vue.use(Toasted);
 
-import apiClient from "./common/apiClient";
-//共通レスポンス処理
-apiClient.interceptors.response.use(
-    function (response) {
-        // 成功時の処理
-        return response;
-    },
-    function (error) {
-        // 失敗時の処理
-        switch (error.response.status) {
-            case 401:
-            // HTTPステータスに応じて処理
-            case 403:
-            default:
-            // 例外処理
-        }
-    }
-);
+Vue.prototype.$apiClient = apiClient;
 
 /* eslint-disable no-new */
 new Vue({

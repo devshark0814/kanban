@@ -3,9 +3,10 @@ from datetime import datetime
 
 # POSTやPUTのとき受け取るRequest Bodyのモデルを定義
 class UserCreate(BaseModel):
-    first_name  : str = Field(None, title="姓")
-    last_name   : str = Field(None, title="名")
-    email       : str = Field(None, title="メールアドレス")
+    first_name  : str = Field(..., title="姓")
+    last_name   : str = Field(..., title="名")
+    email       : str = Field(..., title="メールアドレス")
+    password    : str = Field(..., title="パスワード")
     img_url     : str = Field(None, title="アイコンパス")
 
 
@@ -14,6 +15,7 @@ class UserSelect(BaseModel):
     first_name  : str           = Field(None, title="姓")
     last_name   : str           = Field(None, title="名")
     email       : str           = Field(None, title="メールアドレス")
+    password    : str           = Field(None, title="パスワード")
     img_url     : str           = Field(None, title="イメージパス")
     created_pg  : str           = Field(None, title="作成プログラム")
     created_at  : datetime      = Field(None, title="作成日時")
