@@ -1,22 +1,28 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from datetime import datetime
 
 # POSTやPUTのとき受け取るRequest Bodyのモデルを定義
 class UserCreate(BaseModel):
-    first_name  : str
-    last_name   : str
-    email       : str
-    img_url     : str
+    first_name  : str = Field(None, title="姓")
+    last_name   : str = Field(None, title="名")
+    email       : str = Field(None, title="メールアドレス")
+    img_url     : str = Field(None, title="アイコンパス")
 
 
 class UserSelect(BaseModel):
+    id          : int           = Field("", title="ユーザーID")
+    first_name  : str           = Field(None, title="姓")
+    last_name   : str           = Field(None, title="名")
+    email       : str           = Field(None, title="メールアドレス")
+    img_url     : str           = Field(None, title="イメージパス")
+    created_pg  : str           = Field(None, title="作成プログラム")
+    created_at  : datetime      = Field(None, title="作成日時")
+    updated_pg  : str           = Field(None, title="更新プログラム")
+    updated_at  : datetime      = Field(None, title="更新日時")
+    deleted_pg  : str           = Field(None, title="削除プログラム")
+    deleted_at  : datetime      = Field(None, title="削除日時")
+    class Config:
+        orm_mode = True
+
+class UserDelete(BaseModel):
     id          : int
-    first_name  : str
-    last_name   : str
-    email       : str
-    img_url     : str
-    created_pg  : str
-    created_at  : str
-    updated_pg  : str
-    updated_at  : str
-    deleted_pg  : str
-    deleted_at  : str
